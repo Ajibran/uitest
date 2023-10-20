@@ -5,6 +5,10 @@ from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import NoSuchElementException
 from selenium import webdriver
 from mailjet_rest import Client
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
+
+
 import time
 import os
 
@@ -19,11 +23,7 @@ chrome_options.add_argument("--disable-setuid-sandbox")
 def testDemoForm():
     global formNumber, pageUrl
     try:
-
-        driver = webdriver.Remote(
-            command_executor="http://uitest-chrome-1:4444",
-            options=chrome_options
-        )
+        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
         pageUrl = "https://www.tcpsoftware.com/demo";
         driver.get(pageUrl)
         time.sleep(1)
