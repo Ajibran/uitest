@@ -2,7 +2,7 @@ services:
   web:
     build: .
     volumes:
-      - .:/srv
+      - .:.
     ports:
       - 9222:9222
     tty: true
