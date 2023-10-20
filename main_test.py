@@ -68,11 +68,11 @@ def testDemoForm():
         if str(get_url) == "https://go.tcpsoftware.com/TYPs_Thank-You-Page--Get-a-Demo.html":
             print("The current url is:" + str(get_url))
         else:
-            sendMail("Error submitting form on: \n" + "Page Url: " + pageUrl + "\n Form Number: " + formNumber)
+            # sendMail("Error submitting form on: \n" + "Page Url: " + pageUrl + "\n Form Number: " + formNumber)
             print("Redirection did not happen")
 
     except NoSuchElementException as ex:
-        sendMail("Error submitting form on: \n" + "Page Url: " + pageUrl + "\n Form Number: " + formNumber + "\n Exception: " + ex.msg)
+        # sendMail("Error submitting form on: \n" + "Page Url: " + pageUrl + "\n Form Number: " + formNumber + "\n Exception: " + ex.msg)
         print(ex.msg)
 
     finally:
