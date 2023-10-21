@@ -1,12 +1,11 @@
 from selenium import webdriver
-from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
 from selenium.common.exceptions import NoSuchElementException
-from selenium import webdriver
 from mailjet_rest import Client
-from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
 
 
 import time
@@ -16,14 +15,17 @@ api_key = 'f1e40cee66621dca7307b4acea51a91c'
 api_secret = '5766e5da4a91306e3b8a7e9faa64da31'
 
 chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--remote-debugging-port=9222")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("--disable-setuid-sandbox")
+chrome_options.add_argument("--headless")
+service = Service(executable_path="/chromedriver-linux64/chromedriver")
 
 
 def testDemoForm():
     global formNumber, pageUrl
     try:
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()),options=chrome_options)
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         pageUrl = "https://www.tcpsoftware.com/demo";
         driver.get(pageUrl)
         time.sleep(1)
